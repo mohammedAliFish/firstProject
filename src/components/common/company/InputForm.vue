@@ -62,8 +62,9 @@ const createCompany = async () => {
     };
 
     try {
-      const response = await apiClient.post(`/api/companies/${}/employees`, companyData);
+      const response = await apiClient.post(`/api/companies/99/employees`, companyData);
       console.log('تم إضافة الشركة بنجاح', response.data);
+      
     } catch (error) {
       console.error('حدث خطأ عند إضافة الشركة:', error);
     } finally {

@@ -71,7 +71,7 @@
 <script setup>
 import Header from "../../components/common/Header.vue";
 import InputForm from "../../components/common/company/InputForm.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import apiClient from "@/service/api";
 
 const searchQuery = ref('');
@@ -91,14 +91,17 @@ const fetchCompanies = async () => {
     });
     companies.value = response.data;
     console.log(response)
+    fetchCompanies();
   } catch (error) {
     console.error("Failed to fetch data:", error);
   } finally {
     loading.value = false;
   }
 };
+onMounted(()=>{
+  fetchCompanies();
+})
 
-fetchCompanies();
 
 const splitAddress = (fullAddress) => {
   const parts = fullAddress.split(" ");
